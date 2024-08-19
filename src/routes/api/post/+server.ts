@@ -1,18 +1,17 @@
-import { json, type RequestHandler } from '@sveltejs/kit';
 import database from '$lib/database';
+import { json, type RequestHandler } from '@sveltejs/kit';
 
-export const GET: RequestHandler = async (request) => {
-	console.log(request);
+export const POST: RequestHandler = async (event) => {
+	const data = await event.request.json();
 
-	const posts = await database.collection('posts').find().toArray();
+	console.log(data);
 
-	console.log(posts);
+	const response = await database.collection('posts').insertOne({
+		title: data.title,
+		text: data.text
+	});
 
-	return json(posts);
-};
+	console.log(response);
 
-export const POST: RequestHandler = (request) => {
-	console.log(request);
-
-	return new Response('POST Post API route');
+	return json(response);
 };
