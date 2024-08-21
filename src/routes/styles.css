@@ -6,7 +6,8 @@
   --accent-num: 115, 0, 255;
   --accent: rgb(var(--accent-num));
   --main-transition: .3s;
-  --delete-color: rgb(255, 69, 69);
+  --delete-color-num: 255, 69, 69;
+  --delete-color: rgb(var(--delete-color-num));
 }
 
 * {
@@ -49,7 +50,7 @@ button:active,
 }
 
 .primary-button:hover {
-  box-shadow: 0 0 8px 5px rgba(var(--accent-num), .7);
+  box-shadow: 0 0 8px 5px rgba(var(--accent-num), .4);
 }
 
 .secondary-button {
@@ -67,5 +68,31 @@ button:active,
 }
 
 .delete-button:hover {
-  box-shadow: 0 0 4px var(--delete-color);
+  box-shadow: 0 0 8px 5px rgba(var(--delete-color-num), .4);
+}
+
+.blurry-element {
+  transition: var(--main-transition);
+}
+
+.blurry-element {
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(transparent, rgba(var(--accent-num), .4));
+  border-radius: 50%;
+  filter: blur(30px);
+  animation: blurry-element 10s linear infinite;
+}
+
+@keyframes blurry-element {
+  50% {
+    transform: scale(.7);
+    opacity: .7;
+  }
+}
+
+@media (max-width: 499px) {
+  .header-content {
+    margin-inline: 20px;
+  }
 }
