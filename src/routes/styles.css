@@ -3,7 +3,8 @@
   --sec-bg: rgb(29, 29, 29);
   --main-border-color: rgb(58, 58, 58);
   --main-border-radius: 15px;
-  --accent: rgb(115, 0, 255);
+  --accent-num: 115, 0, 255;
+  --accent: rgb(var(--accent-num));
   --main-transition: .3s;
   --delete-color: rgb(255, 69, 69);
 }
@@ -30,9 +31,10 @@ button,
 .button {
   cursor: pointer;
   text-decoration: none;
-  padding: 15px;
+  padding: 10px 13px;
   border-radius: var(--main-border-radius);
   transition: var(--main-transition), 0s opacity;
+  color: white;
   font-weight: 600;
 }
 
@@ -47,7 +49,7 @@ button:active,
 }
 
 .primary-button:hover {
-  box-shadow: 0 0 4px var(--accent);
+  box-shadow: 0 0 8px 5px rgba(var(--accent-num), .7);
 }
 
 .secondary-button {
