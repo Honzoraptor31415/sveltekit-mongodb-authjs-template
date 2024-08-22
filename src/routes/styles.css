@@ -8,6 +8,7 @@
   --main-transition: .3s;
   --delete-color-num: 255, 69, 69;
   --delete-color: rgb(var(--delete-color-num));
+  --nav-height: 70px;
 }
 
 * {
@@ -95,4 +96,24 @@ button:active,
   .header-content {
     margin-inline: 20px;
   }
+}
+
+@media (min-width: 500px) {
+  nav {
+    padding-inline: 30px;
+  }
+}
+
+button:disabled {
+  opacity: .6;
+  cursor: default;
+  pointer-events: none;
+}
+
+nav {
+  position: fixed;
+  height: var(--nav-height);
+  top: 0;
+  left: 0;
+  width: 100%;
 }
