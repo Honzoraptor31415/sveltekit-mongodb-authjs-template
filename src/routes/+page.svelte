@@ -1,5 +1,6 @@
 <script>
 	import BlurryBackground from '$lib/components/ui/BlurryBackground.svelte';
+	import { githubUrl } from '$lib/constants';
 	import GitHubIcon from '$lib/icons/GitHubIcon.svelte';
 	import AuthjsIcon from '$lib/icons/skill-icons/AuthjsIcon.svelte';
 	import MongoDbIcon from '$lib/icons/skill-icons/MongoDBIcon.svelte';
@@ -26,10 +27,7 @@
 				href="https://github.com/new?template_name=sveltekit-mongodb-authjs-template&template_owner=Honzoraptor31415"
 				class="button primary-button">Use template</a
 			>
-			<a
-				href="https://github.com/Honzoraptor31415/sveltekit-mongodb-authjs-template/"
-				class="button secondary-button flex items-center gap-2"
-			>
+			<a href={githubUrl} class="button secondary-button flex items-center gap-2">
 				<GitHubIcon iconClass="max-h-5 w-auto" />
 				<span>View GitHub</span>
 			</a>

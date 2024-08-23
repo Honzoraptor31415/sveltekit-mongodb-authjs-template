@@ -67,12 +67,12 @@ button:active,
 }
 
 .secondary-button {
-  background: transparent;
-  border: 2px rgb(193, 193, 193) solid;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px transparent solid;
 }
 
 .secondary-button:hover {
-  border-color: white;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .delete-button {
@@ -152,4 +152,9 @@ nav {
   backdrop-filter: blur(12px);
   border-bottom: 1px var(--main-border-color) solid;
   z-index: 999;
+}
+
+.nav-buttons button,
+.nav-buttons .button {
+  height: 42.5px;
 }

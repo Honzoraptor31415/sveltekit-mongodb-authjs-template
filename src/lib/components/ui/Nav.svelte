@@ -1,18 +1,26 @@
 <script>
+	import { githubUrl } from '$lib/constants';
+	import StarIcon from '$lib/icons/StarIcon.svelte';
 	import { authUser, dbUser, isUserLoaded } from '$lib/stores/user';
+
+	export let githubStargazersCount = 0;
 </script>
 
 <nav class="flex justify-between items-center">
 	<a href="/#" class="grid">
 		<img src="/logo.svg" alt="Logo" class="max-h-20 w-auto" />
 	</a>
-	<div class="flex items-center gap-2">
+	<div class="flex items-center gap-2 nav-buttons">
+		<a href={githubUrl} class="button secondary-button flex items-center gap-2">
+			<StarIcon />
+			{githubStargazersCount}
+		</a>
 		{#if $isUserLoaded}
 			{#if $authUser && $dbUser}
 				<button class="primary-button font-[500]">Sign out</button>
 			{:else}
-				<button class="primary-button font-[500]">Sign up</button>
 				<button class="secondary-button font-[500]">Sign in</button>
+				<button class="primary-button font-[500]">Sign up</button>
 			{/if}
 		{:else}
 			<button class="primary-button" disabled>Loading...</button>
