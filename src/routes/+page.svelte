@@ -1,30 +1,26 @@
 <script>
 	import BlurryBackground from '$lib/components/ui/BlurryBackground.svelte';
 	import GitHubIcon from '$lib/icons/GitHubIcon.svelte';
-	import SvelteKitIcon from '$lib/icons/skill-icons/SvelteKitIcon.svelte';
-	import MongoDBIcon from '$lib/icons/skill-icons/MongoDBIcon.svelte';
 	import AuthjsIcon from '$lib/icons/skill-icons/AuthjsIcon.svelte';
+	import MongoDbIcon from '$lib/icons/skill-icons/MongoDBIcon.svelte';
+	import SvelteKitIcon from '$lib/icons/skill-icons/SvelteKitIcon.svelte';
 </script>
 
-<header class="flex items-center justify-center min-h-[100svh]">
+<header class="flex items-center justify-center min-h-[100svh] relative">
 	<BlurryBackground />
 	<div class="flex flex-col items-center gap-6 header-content">
-		<h1 class="flex gap-3 items-center flex-wrap justify-center">
-			<div class="flex gap-3 items-center">
-				<span>SvelteKit</span>
-				<SvelteKitIcon iconClass="max-h-8 w-auto" />
-			</div>
-			+
-			<div class="flex gap-3 items-center">
-				<span>MongoDB</span>
-				<MongoDBIcon iconClass="max-h-8 w-auto" />
-			</div>
-			+
-			<div class="flex gap-3 items-center">
-				<span>Auth.js</span>
-				<AuthjsIcon iconClass="max-h-8 w-auto" />
-			</div>
+		<div class="flex gap-2">
+			<SvelteKitIcon iconClass="max-h-9 w-auto" />
+			<MongoDbIcon iconClass="max-h-9 w-auto" />
+			<AuthjsIcon iconClass="max-h-9 w-auto" />
+		</div>
+		<h1 class="text-center">
+			SvelteKit + MongoDB + Auth.js template to build your next project faster!
 		</h1>
+		<p class="text-lg text-gray-400 text-center">
+			Start your next SvelteKit project with a fully functional database, API and user
+			authentication.
+		</p>
 		<div class="flex gap-4">
 			<a
 				href="https://github.com/new?template_name=sveltekit-mongodb-authjs-template&template_owner=Honzoraptor31415"

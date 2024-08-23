@@ -9,13 +9,13 @@
 	<div class="flex items-center gap-2">
 		{#if $isUserLoaded}
 			{#if $authUser && $dbUser}
-				<button class="primary-button">Sign out</button>
+				<button class="primary-button font-[500]">Sign out</button>
 			{:else}
-				<button class="primary-button">Sign up</button>
-				<button class="secondary-button">Sign in</button>
+				<button class="primary-button font-[500]">Sign up</button>
+				<button class="secondary-button font-[500]">Sign in</button>
 			{/if}
 		{:else}
-			<button disabled>Loading...</button>
+			<button class="primary-button" disabled>Loading...</button>
 		{/if}
 	</div>
 </nav>

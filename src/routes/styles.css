@@ -1,14 +1,20 @@
 :root {
-  --main-bg: rgb(0, 0, 0);
-  --sec-bg: rgb(29, 29, 29);
+  --main-bg-num: 17, 17, 17;
+  --main-bg: rgb(var(--main-bg-num));
+  --sec-bg: rgb(50, 50, 50);
   --main-border-color: rgb(58, 58, 58);
-  --main-border-radius: 15px;
-  --accent-num: 115, 0, 255;
+  --accent-dark: rgb(104, 0, 231);
+  --main-border-radius: 12px;
+  --accent-num: 125, 20, 255;
   --accent: rgb(var(--accent-num));
   --main-transition: .3s;
   --delete-color-num: 255, 69, 69;
   --delete-color: rgb(var(--delete-color-num));
-  --nav-height: 70px;
+  --nav-height: 71px;
+  --authjs-color-1-num: 204, 66, 229;
+  --authjs-color-2-num: 25, 170, 232;
+  --sveltekit-color-num: 255, 62, 0;
+  --mongodb-color-num: 16, 170, 80;
 }
 
 * {
@@ -21,6 +27,10 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: white;
   background: var(--main-bg);
+}
+
+body:has(nav) {
+  margin-top: calc(var(--nav-height) / 2);
 }
 
 .card {
@@ -38,6 +48,8 @@ button,
   transition: var(--main-transition), 0s opacity;
   color: white;
   font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
 }
 
 button:active,
@@ -47,7 +59,7 @@ button:active,
 
 .primary-button {
   background: var(--accent);
-  border: 1px var(--accent) solid;
+  border: 2px var(--accent-dark) solid;
 }
 
 .primary-button:hover {
@@ -56,7 +68,7 @@ button:active,
 
 .secondary-button {
   background: transparent;
-  border: 1px rgb(193, 193, 193) solid;
+  border: 2px rgb(193, 193, 193) solid;
 }
 
 .secondary-button:hover {
@@ -65,7 +77,7 @@ button:active,
 
 .delete-button {
   background: var(--delete-color);
-  border: 1px var(--delete-color) solid;
+  border: 2px var(--delete-color) solid;
 }
 
 .delete-button:hover {
@@ -77,9 +89,12 @@ button:active,
 }
 
 .blurry-element {
-  width: 50%;
-  height: 50%;
-  background: radial-gradient(transparent, rgba(var(--accent-num), .4));
+  width: 40%;
+  aspect-ratio: 1;
+  background: conic-gradient(rgba(var(--authjs-color-1-num), .3),
+      rgba(var(--sveltekit-color-num), .3),
+      rgba(var(--mongodb-color-num), .3),
+      rgba(var(--authjs-color-2-num), .3));
   border-radius: 50%;
   filter: blur(30px);
   animation: blurry-element 10s linear infinite;
@@ -96,11 +111,28 @@ button:active,
   .header-content {
     margin-inline: 20px;
   }
+
+  nav {
+    padding-inline: 20px;
+  }
+
+  .header-content h1 {
+    font-size: 2.3rem;
+    line-height: 45px;
+    font-weight: 600;
+  }
 }
 
 @media (min-width: 500px) {
   nav {
     padding-inline: 30px;
+  }
+
+  .header-content h1 {
+    max-width: 70%;
+    font-size: 3rem;
+    line-height: 50px;
+    font-weight: 800;
   }
 }
 
@@ -112,8 +144,12 @@ button:disabled {
 
 nav {
   position: fixed;
-  height: var(--nav-height);
   top: 0;
+  height: var(--nav-height);
   left: 0;
   width: 100%;
+  background: rgba(var(--main-bg-num), .5);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px var(--main-border-color) solid;
+  z-index: 999;
 }
