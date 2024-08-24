@@ -25,9 +25,9 @@
 		<div class="flex gap-4">
 			<a
 				href="https://github.com/new?template_name=sveltekit-mongodb-authjs-template&template_owner=Honzoraptor31415"
-				class="button primary-button">Use template</a
+				class="button primary-button font-[600]">Use template</a
 			>
-			<a href={githubUrl} class="button secondary-button flex items-center gap-2">
+			<a href={githubUrl} class="button secondary-button flex items-center gap-2 font-[600]">
 				<GitHubIcon iconClass="max-h-5 w-auto" />
 				<span>View GitHub</span>
 			</a>

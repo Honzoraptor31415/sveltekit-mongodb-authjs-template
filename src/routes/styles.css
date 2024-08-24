@@ -15,6 +15,7 @@
   --authjs-color-2-num: 25, 170, 232;
   --sveltekit-color-num: 255, 62, 0;
   --mongodb-color-num: 16, 170, 80;
+  color-scheme: dark;
 }
 
 * {
@@ -47,7 +48,6 @@ button,
   border-radius: var(--main-border-radius);
   transition: var(--main-transition), 0s opacity;
   color: white;
-  font-weight: 600;
   font-size: 1rem;
   letter-spacing: 1px;
 }
@@ -156,5 +156,9 @@ nav {
 
 .nav-buttons button,
 .nav-buttons .button {
-  height: 42.5px;
+  line-height: 1.15;
+}
+
+a {
+  font-weight: normal !important;
 }
