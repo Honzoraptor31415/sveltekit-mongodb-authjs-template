@@ -16,8 +16,10 @@
 			{githubStargazersCount}
 		</a>
 		{#if $isUserLoaded}
-			{#if $authUser && $dbUser}
-				<button class="primary-button font-[500]">Sign out</button>
+			{#if $authUser}
+				<form action="/signout" method="post">
+					<button class="primary-button font-[500]" type="submit">Sign out</button>
+				</form>
 			{:else}
 				<a class="button secondary-button font-[500]" href="/signin">Sign in</a>
 				<a class="button primary-button font-[500]" href="/signup">Sign up</a>
