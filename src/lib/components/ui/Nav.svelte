@@ -1,15 +1,18 @@
 <script>
 	import { githubUrl } from '$lib/constants';
+	import CrossIcon from '$lib/icons/CrossIcon.svelte';
+	import MenuIcon from '$lib/icons/MenuIcon.svelte';
+	import PlusIcon from '$lib/icons/PlusIcon.svelte';
 	import StarIcon from '$lib/icons/StarIcon.svelte';
 	import { authUser, dbUser, isUserLoaded } from '$lib/stores/user';
 
 	export let githubStargazersCount = 0;
+
+	let isMobileNavShown = false;
 </script>
 
-<nav class="flex justify-between items-center">
-	<a href="/#" class="grid">
-		<img src="/logo.svg" alt="Logo" class="max-h-20 w-auto" />
-	</a>
+<nav class="flex justify-between items-center desktop">
+	<a href="/#" class="logo-text">Template</a>
 	<div class="flex items-center gap-2 nav-buttons">
 		<a href={githubUrl} class="button secondary-button flex items-center gap-2">
 			<StarIcon />
@@ -18,8 +21,11 @@
 		{#if $isUserLoaded}
 			{#if $authUser}
 				<form action="/signout" method="post">
-					<button class="primary-button font-[500]" type="submit">Sign out</button>
+					<button class="secondary-button font-[500]" type="submit">Sign out</button>
 				</form>
+				<a href="/#new" class="button primary-button flex gap-2 items-center justify-center"
+					>Create <PlusIcon iconClass="max-h-3 w-auto" /></a
+				>
 			{:else}
 				<a class="button secondary-button font-[500]" href="/signin">Sign in</a>
 				<a class="button primary-button font-[500]" href="/signup">Sign up</a>
@@ -29,3 +35,42 @@
 		{/if}
 	</div>
 </nav>
+
+<nav class="flex justify-between items-center mobile">
+	<a href="/#" class="logo-text">Template</a>
+	<button
+		class="grid no-style p-0"
+		on:click={() => {
+			isMobileNavShown = !isMobileNavShown;
+		}}
+	>
+		{#if isMobileNavShown}
+			<CrossIcon iconClass="max-h-6 w-auto" />
+		{:else}
+			<MenuIcon iconClass="max-h-6 w-auto" />
+		{/if}
+	</button>
+</nav>
+
+<div
+	class="fixed mobile mobile-nav-content z-10"
+	style="bottom: {isMobileNavShown ? '0px' : '-100vh'}"
+>
+	<div class="grid grid-cols-2 items-center gap-4 nav-buttons m-4">
+		{#if $isUserLoaded}
+			{#if $authUser}
+				<a href="/#new" class="button primary-button flex gap-2 items-center justify-center"
+					>Create <PlusIcon iconClass="max-h-3 w-auto" /></a
+				>
+				<form action="/signout" method="post">
+					<button class="secondary-button font-[500] w-full" type="submit">Sign out</button>
+				</form>
+			{:else}
+				<a class="button secondary-button font-[500]" href="/signin">Sign in</a>
+				<a class="button primary-button font-[500]" href="/signup">Sign up</a>
+			{/if}
+		{:else}
+			<button class="primary-button font-[500]" disabled>Loading...</button>
+		{/if}
+	</div>
+</div>
