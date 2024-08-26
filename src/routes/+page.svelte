@@ -1,7 +1,7 @@
 <script>
 	import BlurryBackground from '$lib/components/ui/BlurryBackground.svelte';
 	import { githubUrl } from '$lib/constants';
-	import GitHubIcon from '$lib/icons/GitHubIcon.svelte';
+	import GitHubIcon from '$lib/icons/socials/GitHubIcon.svelte';
 	import AuthjsIcon from '$lib/icons/skill-icons/AuthjsIcon.svelte';
 	import MongoDbIcon from '$lib/icons/skill-icons/MongoDBIcon.svelte';
 	import SvelteKitIcon from '$lib/icons/skill-icons/SvelteKitIcon.svelte';

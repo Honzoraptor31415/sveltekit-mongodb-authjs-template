@@ -1,9 +1,9 @@
 <script>
 	import { githubUrl } from '$lib/constants';
-	import CrossIcon from '$lib/icons/CrossIcon.svelte';
-	import MenuIcon from '$lib/icons/MenuIcon.svelte';
-	import PlusIcon from '$lib/icons/PlusIcon.svelte';
-	import StarIcon from '$lib/icons/StarIcon.svelte';
+	import CrossIcon from '$lib/icons/ui/CrossIcon.svelte';
+	import MenuIcon from '$lib/icons/ui/MenuIcon.svelte';
+	import PlusIcon from '$lib/icons/ui/PlusIcon.svelte';
+	import StarIcon from '$lib/icons/ui/StarIcon.svelte';
 	import { authUser, dbUser, isUserLoaded } from '$lib/stores/user';
 
 	export let githubStargazersCount = 0;
@@ -66,8 +66,8 @@
 					<button class="secondary-button font-[500] w-full" type="submit">Sign out</button>
 				</form>
 			{:else}
-				<a class="button secondary-button font-[500]" href="/signin">Sign in</a>
-				<a class="button primary-button font-[500]" href="/signup">Sign up</a>
+				<a class="button secondary-button font-[500] text-center" href="/signin">Sign in</a>
+				<a class="button primary-button font-[500] text-center" href="/signup">Sign up</a>
 			{/if}
 		{:else}
 			<button class="primary-button font-[500]" disabled>Loading...</button>
