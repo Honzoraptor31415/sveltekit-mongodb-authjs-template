@@ -19,7 +19,7 @@
 			{githubStargazersCount}
 		</a>
 		{#if $isUserLoaded}
-			{#if $authUser}
+			{#if $authUser && $dbUser}
 				<form action="/signout" method="post">
 					<button class="secondary-button font-[500]" type="submit">Sign out</button>
 				</form>
