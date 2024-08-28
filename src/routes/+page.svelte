@@ -5,6 +5,22 @@
 	import AuthjsIcon from '$lib/icons/skill-icons/AuthjsIcon.svelte';
 	import MongoDbIcon from '$lib/icons/skill-icons/MongoDBIcon.svelte';
 	import SvelteKitIcon from '$lib/icons/skill-icons/SvelteKitIcon.svelte';
+
+	const newPostForm = {
+		title: '',
+		text: ''
+	};
+
+	async function createNewPost() {
+		const response = await fetch('api/post', {
+			method: 'POST',
+			body: JSON.stringify(newPostForm)
+		});
+
+		const data = await response.json();
+
+		console.log(response, data);
+	}
 </script>
 
 <header class="flex items-center justify-center min-h-[100svh] relative">
@@ -35,4 +51,12 @@
 	</div>
 </header>
 
-<main></main>
+<main>
+	<section id="new">
+		<form on:submit={createNewPost} class="card">
+			<input type="text" bind:value={newPostForm.title} />
+			<input type="text" bind:value={newPostForm.text} />
+			<button type="submit" class="primary-button"></button>
+		</form>
+	</section>
+</main>

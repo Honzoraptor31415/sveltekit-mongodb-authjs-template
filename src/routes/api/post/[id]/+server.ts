@@ -16,18 +16,18 @@ export const GET: RequestHandler = async (event) => {
 export const PATCH: RequestHandler = async (event) => {
 	console.log(event);
 
-	const data = await event.request.formData();
+	const body = event.request;
 
-	console.log(data);
+	// const response = await database.collection('posts').updateOne(
+	// 	{
+	// 		_id: new ObjectId(event.params.id)
+	// 	},
+	// 	body
+	// );
 
-	const response = await database.collection('posts').updateOne(
-		{
-			_id: new ObjectId(event.params.id)
-		},
-		data
-	);
+	// return json(response);
 
-	return json(response);
+	return new Response('Yeet');
 };
 
 export const DELETE: RequestHandler = async (event) => {

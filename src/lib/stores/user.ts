@@ -4,6 +4,6 @@ import { writable } from 'svelte/store';
 
 const authUser = writable<AuthUser>();
 const dbUser = writable<DbUser>();
-const isUserLoaded = writable<boolean>(true);
+const isUserLoaded = writable<boolean>(false);
 
 export { authUser, dbUser, isUserLoaded };
