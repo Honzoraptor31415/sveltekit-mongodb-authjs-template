@@ -1,5 +1,12 @@
+import type { check } from './types/app';
+
+export const defaultCheck: check = {
+	isValid: true,
+	message: ''
+};
+
 export function titleCheck(title: string) {
-	const check = {
+	const check: check = {
 		isValid: true,
 		message: ''
 	};
@@ -16,7 +23,7 @@ export function titleCheck(title: string) {
 }
 
 export function textCheck(text: string) {
-	const check = {
+	const check: check = {
 		isValid: true,
 		message: ''
 	};

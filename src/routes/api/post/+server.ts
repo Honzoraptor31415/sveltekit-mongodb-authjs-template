@@ -22,35 +22,52 @@ export const POST: RequestHandler = async (event) => {
 
 	if (!session?.user) {
 		return json({
+			ok: false,
 			message: 'You have to be authenticated'
 		});
 	} else if (!dbUser) {
 		return json({
+			ok: false,
 			message: 'Invalid user data'
 		});
 	} else if (bodyKeys.length > 2) {
 		return json({
+			ok: false,
 			message: 'Unexpected data'
 		});
 	} else if (bodyKeys.length === 0) {
 		return json({
+			ok: false,
 			message: 'Please provide data'
 		});
 	} else if (bodyKeys.length < 2) {
 		return json({
+			ok: false,
 			message: 'Missing property'
 		});
 	} else if (!titleCheck.isValid) {
 		return json({
+			ok: false,
 			message: titleCheck.message
 		});
 	} else if (!textCheck.isValid) {
 		return json({
+			ok: false,
 			message: textCheck.message
 		});
 	}
 
 	const response = await database.collection('posts').insertOne(body);
 
-	return json(response);
+	if (response.acknowledged) {
+		return json({
+			ok: true,
+			message: 'Post created!'
+		});
+	} else {
+		return json({
+			ok: false,
+			message: 'Something went wrong'
+		});
+	}
 };

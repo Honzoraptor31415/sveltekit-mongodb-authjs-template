@@ -1,25 +1,43 @@
-<script>
+<script lang="ts">
 	import BlurryBackground from '$lib/components/ui/BlurryBackground.svelte';
 	import { githubUrl } from '$lib/constants';
 	import GitHubIcon from '$lib/icons/socials/GitHubIcon.svelte';
 	import AuthjsIcon from '$lib/icons/skill-icons/AuthjsIcon.svelte';
 	import MongoDbIcon from '$lib/icons/skill-icons/MongoDBIcon.svelte';
 	import SvelteKitIcon from '$lib/icons/skill-icons/SvelteKitIcon.svelte';
+	import PlusIcon from '$lib/icons/ui/PlusIcon.svelte';
+	import FormElement from '$lib/components/form/FormElement.svelte';
+	import { textCheck, titleCheck, defaultCheck } from '$lib/form-validation';
+	import type { ApiResponse } from '$lib/types/app';
 
 	const newPostForm = {
 		title: '',
 		text: ''
 	};
 
-	async function createNewPost() {
-		const response = await fetch('api/post', {
-			method: 'POST',
-			body: JSON.stringify(newPostForm)
-		});
+	const newPostFormChecks = {
+		title: defaultCheck,
+		text: defaultCheck
+	};
 
-		const data = await response.json();
+	async function createNewPost(e: SubmitEvent) {
+		e.preventDefault();
 
-		console.log(response, data);
+		newPostFormChecks.title = titleCheck(newPostForm.title);
+		newPostFormChecks.text = textCheck(newPostForm.text);
+
+		if (newPostFormChecks.title.isValid && newPostFormChecks.text.isValid) {
+			const response = await fetch('api/post', {
+				method: 'POST',
+				body: JSON.stringify(newPostForm)
+			});
+
+			const data = (await response.json()) as ApiResponse;
+
+			if (!data.ok) {
+				console.log('Something went wrong: ', data.message);
+			}
+		}
 	}
 </script>
 
@@ -52,11 +70,26 @@
 </header>
 
 <main>
-	<section id="new">
-		<form on:submit={createNewPost} class="card">
-			<input type="text" bind:value={newPostForm.title} />
-			<input type="text" bind:value={newPostForm.text} />
-			<button type="submit" class="primary-button"></button>
+	<section id="new" class="flex justify-center">
+		<form on:submit={createNewPost} class="card flex flex-col gap-4 align-center">
+			<h2 class="text-center">Create post</h2>
+			<FormElement
+				inputType="text"
+				bind:value={newPostForm.title}
+				labelValue={newPostFormChecks.title.isValid ? 'Title' : newPostFormChecks.title.message}
+				id="title"
+				isValid={newPostFormChecks.title.isValid}
+			/>
+			<FormElement
+				inputType="textarea"
+				bind:value={newPostForm.text}
+				labelValue={newPostFormChecks.text.isValid ? 'Text' : newPostFormChecks.text.message}
+				id="text"
+				isValid={newPostFormChecks.text.isValid}
+			/>
+			<button type="submit" class="primary-button flex gap-2 items-center justify-center"
+				>Create <PlusIcon iconClass="max-h-3 w-auto" /></button
+			>
 		</form>
 	</section>
 </main>

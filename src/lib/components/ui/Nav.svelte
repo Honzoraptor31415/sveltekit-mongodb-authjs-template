@@ -21,17 +21,17 @@
 		{#if $isUserLoaded}
 			{#if $authUser && $dbUser}
 				<form action="/signout" method="post">
-					<button class="secondary-button font-[500]" type="submit">Sign out</button>
+					<button class="secondary-button" type="submit">Sign out</button>
 				</form>
 				<a href="/#new" class="button primary-button flex gap-2 items-center justify-center"
 					>Create <PlusIcon iconClass="max-h-3 w-auto" /></a
 				>
 			{:else}
-				<a class="button secondary-button font-[500]" href="/signin">Sign in</a>
-				<a class="button primary-button font-[500]" href="/signup">Sign up</a>
+				<a class="button secondary-button" href="/signin">Sign in</a>
+				<a class="button primary-button" href="/signup">Sign up</a>
 			{/if}
 		{:else}
-			<button class="primary-button font-[500]" disabled>Loading...</button>
+			<button class="primary-button" disabled>Loading...</button>
 		{/if}
 	</div>
 </nav>
