@@ -2,12 +2,13 @@ export interface DbPost {
 	id: string;
 	title: string;
 	text: string;
-	user_id: string;
-	created_at: number;
+	userId: string;
+	createdAt: number;
 }
 
 export interface DbUser {
 	id: string;
-	username: string;
-	image_url: string;
+	name: string;
+	image: string;
+	emailVerified: boolean | null;
 }

@@ -2,17 +2,18 @@
 	import Nav from '$lib/components/ui/Nav.svelte';
 	import './tailwind.css';
 	import './styles.css';
-	import { authUser, isUserLoaded } from '$lib/stores/user';
+	import { authUser, dbUser, isUserLoaded } from '$lib/stores/user';
 
 	export let data;
 
-	console.log(data.session);
+	console.log(data);
 
 	if (data.session !== undefined) {
 		isUserLoaded.set(true);
 
-		if (data.session?.user) {
+		if (data.session?.user && data.dbUser) {
 			authUser.set(data.session.user);
+			dbUser.set(data.dbUser);
 		}
 	}
 </script>

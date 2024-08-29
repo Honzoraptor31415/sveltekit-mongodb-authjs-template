@@ -1,5 +1,7 @@
-import database from '$lib/database';
+import database, { client } from '$lib/database';
 import * as validation from '$lib/form-validation';
+import type { DbUser } from '$lib/types/db';
+import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import { json, type RequestHandler } from '@sveltejs/kit';
 
 export const POST: RequestHandler = async (event) => {
@@ -8,14 +10,23 @@ export const POST: RequestHandler = async (event) => {
 	const session = await event.locals.auth();
 	const titleCheck = validation.titleCheck(body.title);
 	const textCheck = validation.textCheck(body.text);
+	const adapter = MongoDBAdapter(client, {
+		databaseName: 'main'
+	});
+	const dbUser = (await adapter.getUserByEmail!(session?.user?.email as string)) as DbUser;
+
+	console.log('Session: ' + session);
 
 	body.date = new Date().getTime();
-
-	console.log(session);
+	body.userId = dbUser.id;
 
 	if (!session?.user) {
 		return json({
 			message: 'You have to be authenticated'
+		});
+	} else if (!dbUser) {
+		return json({
+			message: 'Invalid user data'
 		});
 	} else if (bodyKeys.length > 2) {
 		return json({
@@ -40,8 +51,6 @@ export const POST: RequestHandler = async (event) => {
 	}
 
 	const response = await database.collection('posts').insertOne(body);
-
-	console.log(response);
 
 	return json(response);
 };
