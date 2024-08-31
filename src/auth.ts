@@ -1,3 +1,4 @@
+import { DB_NAME } from '$env/static/private';
 import { client } from '$lib/database';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import { SvelteKitAuth } from '@auth/sveltekit';
@@ -7,6 +8,6 @@ import Google from '@auth/sveltekit/providers/google';
 export const { handle, signIn, signOut } = SvelteKitAuth({
 	providers: [GitHub, Google],
 	adapter: MongoDBAdapter(client, {
-		databaseName: 'main'
+		databaseName: DB_NAME
 	})
 });

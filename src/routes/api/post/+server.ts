@@ -1,3 +1,4 @@
+import { DB_NAME } from '$env/static/private';
 import database, { client } from '$lib/database';
 import * as validation from '$lib/form-validation';
 import type { DbUser } from '$lib/types/db';
@@ -11,21 +12,23 @@ export const POST: RequestHandler = async (event) => {
 	const titleCheck = validation.titleCheck(body.title);
 	const textCheck = validation.textCheck(body.text);
 	const adapter = MongoDBAdapter(client, {
-		databaseName: 'main'
+		databaseName: DB_NAME
 	});
 	const dbUser = (await adapter.getUserByEmail!(session?.user?.email as string)) as DbUser;
 
 	console.log('Session: ' + session);
-
-	body.date = new Date().getTime();
-	body.userId = dbUser.id;
 
 	if (!session?.user) {
 		return json({
 			ok: false,
 			message: 'You have to be authenticated'
 		});
-	} else if (!dbUser) {
+	}
+
+	body.date = new Date().getTime();
+	body.userId = dbUser.id;
+
+	if (!dbUser) {
 		return json({
 			ok: false,
 			message: 'Invalid user data'
