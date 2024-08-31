@@ -1,1 +1,5 @@
-export type AuthUser = any;
+export type AuthUser = {
+	email: string;
+	name: string;
+	image: string;
+};
