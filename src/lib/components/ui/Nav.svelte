@@ -27,8 +27,7 @@
 					>Create <PlusIcon iconClass="max-h-3 w-auto" /></a
 				>
 			{:else}
-				<a class="button secondary-button" href="/signin">Sign in</a>
-				<a class="button primary-button" href="/signup">Sign up</a>
+				<a class="button primary-button" href="/signin">Sign in</a>
 			{/if}
 		{:else}
 			<button class="primary-button" disabled>Loading...</button>
@@ -67,7 +66,6 @@
 				</form>
 			{:else}
 				<a class="button secondary-button font-[500] text-center" href="/signin">Sign in</a>
-				<a class="button primary-button font-[500] text-center" href="/signup">Sign up</a>
 			{/if}
 		{:else}
 			<button class="primary-button font-[500]" disabled>Loading...</button>
