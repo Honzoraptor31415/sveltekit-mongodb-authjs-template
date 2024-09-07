@@ -48,15 +48,35 @@ export const POST: RequestHandler = async (event) => {
 			ok: false,
 			message: 'Missing property'
 		});
-	} else if (!titleCheck.isValid) {
+	}
+
+	if (!titleCheck.isValid) {
 		return json({
 			ok: false,
-			message: titleCheck.message
+			checks: {
+				title: {
+					isValid: titleCheck.isValid,
+					message: titleCheck.message
+				},
+				text: {
+					isValid: textCheck.isValid,
+					message: textCheck.message
+				}
+			}
 		});
 	} else if (!textCheck.isValid) {
 		return json({
 			ok: false,
-			message: textCheck.message
+			checks: {
+				title: {
+					isValid: titleCheck.isValid,
+					message: titleCheck.message
+				},
+				text: {
+					isValid: textCheck.isValid,
+					message: textCheck.message
+				}
+			}
 		});
 	}
 

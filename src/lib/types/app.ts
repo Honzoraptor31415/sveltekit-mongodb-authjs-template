@@ -5,5 +5,9 @@ export interface check {
 
 export interface ApiResponse {
 	ok: boolean;
-	message: string;
+	message?: string;
+	checks?: {
+		title: check;
+		text: check;
+	};
 }

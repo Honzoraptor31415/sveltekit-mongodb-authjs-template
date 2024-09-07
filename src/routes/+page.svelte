@@ -15,7 +15,7 @@
 		text: ''
 	};
 
-	const newPostFormChecks = {
+	let newPostFormChecks = {
 		title: defaultCheck,
 		text: defaultCheck
 	};
@@ -23,20 +23,20 @@
 	async function createNewPost(e: SubmitEvent) {
 		e.preventDefault();
 
-		newPostFormChecks.title = titleCheck(newPostForm.title);
-		newPostFormChecks.text = textCheck(newPostForm.text);
+		const response = await fetch('api/post', {
+			method: 'POST',
+			body: JSON.stringify(newPostForm)
+		});
 
-		if (newPostFormChecks.title.isValid && newPostFormChecks.text.isValid) {
-			const response = await fetch('api/post', {
-				method: 'POST',
-				body: JSON.stringify(newPostForm)
-			});
+		const data = (await response.json()) as ApiResponse;
 
-			const data = (await response.json()) as ApiResponse;
+		console.log(data);
 
-			if (!data.ok) {
-				console.log('Something went wrong: ', data.message);
-			}
+		if (data.checks) {
+			newPostFormChecks = data.checks;
+		} else {
+			newPostFormChecks.title = defaultCheck;
+			newPostFormChecks.text = defaultCheck;
 		}
 	}
 </script>
