@@ -35,6 +35,7 @@
 	"dependencies": {
 		"@auth/mongodb-adapter": "^3.4.2",
 		"@auth/sveltekit": "^1.4.2",
-		"mongodb": "^6.8.0"
+		"mongodb": "^6.8.0",
+		"svelte-french-toast": "^1.2.0"
 	}
 }

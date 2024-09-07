@@ -1,5 +1,5 @@
 <script>
-	import { githubUrl } from '$lib/constants';
+	import { githubUrl } from '$lib/constants/app';
 	import CrossIcon from '$lib/icons/ui/CrossIcon.svelte';
 	import MenuIcon from '$lib/icons/ui/MenuIcon.svelte';
 	import PlusIcon from '$lib/icons/ui/PlusIcon.svelte';

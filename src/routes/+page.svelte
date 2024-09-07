@@ -1,14 +1,16 @@
 <script lang="ts">
 	import BlurryBackground from '$lib/components/ui/BlurryBackground.svelte';
-	import { githubUrl } from '$lib/constants';
+	import { githubUrl } from '$lib/constants/app';
 	import GitHubIcon from '$lib/icons/socials/GitHubIcon.svelte';
 	import AuthjsIcon from '$lib/icons/skill-icons/AuthjsIcon.svelte';
 	import MongoDbIcon from '$lib/icons/skill-icons/MongoDBIcon.svelte';
 	import SvelteKitIcon from '$lib/icons/skill-icons/SvelteKitIcon.svelte';
 	import PlusIcon from '$lib/icons/ui/PlusIcon.svelte';
 	import FormElement from '$lib/components/form/FormElement.svelte';
-	import { textCheck, titleCheck, defaultCheck } from '$lib/form-validation';
+	import { defaultCheck } from '$lib/form-validation';
 	import type { ApiResponse } from '$lib/types/app';
+	import toast, { type ToastOptions } from 'svelte-french-toast';
+	import { toastOptions } from '$lib/constants/toast';
 
 	const newPostForm = {
 		title: '',
@@ -32,6 +34,12 @@
 
 		console.log(data);
 
+		if (data.message && !data.ok) {
+			toast.error(data.message, toastOptions);
+		} else if (data.message && data.ok) {
+			toast.success(data.message, toastOptions);
+		}
+
 		if (data.checks) {
 			newPostFormChecks = data.checks;
 		} else {
@@ -40,6 +48,10 @@
 		}
 	}
 </script>
+
+<svelte:head>
+	<title>SvelteKit + MongoDB + Auth.js template</title>
+</svelte:head>
 
 <header class="flex items-center justify-center min-h-[100svh] relative">
 	<BlurryBackground />

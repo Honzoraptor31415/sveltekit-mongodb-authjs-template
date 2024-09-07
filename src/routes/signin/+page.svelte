@@ -3,6 +3,10 @@
 	import GoogleIcon from '$lib/icons/socials/GoogleIcon.svelte';
 </script>
 
+<svelte:head>
+	<title>Sign in</title>
+</svelte:head>
+
 <form action="/signin" method="post">
 	<input type="hidden" name="providerId" value="github" />
 	<button type="submit" class="primary-button"

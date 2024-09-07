@@ -4,6 +4,7 @@
 	import './styles.css';
 	import { authUser, dbUser, isUserLoaded } from '$lib/stores/user';
 	import type { AuthUser } from '$lib/types/auth';
+	import { Toaster } from 'svelte-french-toast';
 
 	export let data;
 
@@ -21,6 +22,8 @@
 		}
 	}
 </script>
+
+<Toaster />
 
 <Nav githubStargazersCount={data.githubStargazersCount} />
 
