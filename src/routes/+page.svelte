@@ -11,6 +11,9 @@
 	import type { ApiResponse } from '$lib/types/app';
 	import toast, { type ToastOptions } from 'svelte-french-toast';
 	import { toastOptions } from '$lib/constants/toast';
+	import Post from '$lib/components/post/Post.svelte';
+
+	export let data;
 
 	const newPostForm = {
 		title: '',
@@ -103,5 +106,17 @@
 				>Create <PlusIcon iconClass="max-h-3 w-auto" /></button
 			>
 		</form>
+	</section>
+	<section id="feed">
+		{#if data.allPosts.length === 0}
+			<h2>No posts created yet</h2>
+		{:else}
+			<h2>All posts:</h2>
+			<div class="flex flex-col gap-3">
+				{#each data.allPosts as post}
+					<Post {...post} />
+				{/each}
+			</div>
+		{/if}
 	</section>
 </main>

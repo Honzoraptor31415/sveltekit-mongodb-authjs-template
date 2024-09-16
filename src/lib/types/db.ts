@@ -2,6 +2,7 @@ export interface DbPost {
 	id: string;
 	title: string;
 	text: string;
+	date: number;
 	userId: string;
 	createdAt: number;
 }
